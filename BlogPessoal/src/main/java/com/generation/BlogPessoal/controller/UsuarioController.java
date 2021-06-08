@@ -25,13 +25,17 @@ public class UsuarioController {
 	
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> Authentication(@RequestBody Optional<UsuarioLogin> user){
-		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
+		return usuarioService.logar(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
-	@PostMapping("/cadastrar")
+	@PostMapping
 	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
-		return ResponseEntity.status(HttpStatus.CREATED)
-				.body(usuarioService.CadastrarUsuario(usuario));
+		Optional<Usuario> user = usuarioService.CadastrarUsuario(usuario);
+		try {
+			return ResponseEntity.ok(user.get());
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

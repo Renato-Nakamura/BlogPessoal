@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.generation.BlogPessoal.model.Usuario;
 
-
+//verificação do usuario se ele está ativo, logado e etc  para isso que serve o UserDetailsImpl
 
 public class UserDetailsImpl implements UserDetails{
 	private static final long serialVersionUID = 1L;

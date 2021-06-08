@@ -18,14 +18,19 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository repository;
 	
-	public Usuario CadastrarUsuario(Usuario usuario) {
+	public Optional<Usuario> CadastrarUsuario(Usuario usuario) {
+		if(repository.findByUsuario(usuario.getUsuario()).isPresent()) {
+			return null;
+		}
+			
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String senhaEncoder = encoder.encode(usuario.getSenha());
 		usuario.setSenha(senhaEncoder);
-		return repository.save(usuario);
+		return Optional.of(repository.save(usuario));
 	}
 	
-	public Optional<UsuarioLogin> Logar(Optional<UsuarioLogin> user){
+	public Optional<UsuarioLogin> logar(Optional<UsuarioLogin> user){
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
 		
@@ -42,6 +47,6 @@ public class UsuarioService {
 				return user;
 			}
 		}
-		return null;
+		return Optional.empty();
 	}
 }

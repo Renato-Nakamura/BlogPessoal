@@ -13,6 +13,7 @@ import com.generation.BlogPessoal.repository.UsuarioRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
+	//faz autenticação do token
 	@Autowired
 	private UsuarioRepository userRepository;
 

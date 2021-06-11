@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="tb_usuario")
 public class Usuario {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -25,6 +25,21 @@ public class Usuario {
 	@NotNull
 	@Size(min=8,max=100)
 	private String senha;
+	
+	public Usuario() {
+		super();
+	}
+	
+	public Usuario(@NotNull @Size(min = 2, max = 100) String nome, @NotNull @Size(min = 5, max = 100) String usuario,
+			@NotNull @Size(min = 8, max = 100) String senha) {
+		super();
+		this.nome = nome;
+		this.usuario = usuario;
+		this.senha = senha;
+	}
+
+
+
 	public long getId() {
 		return id;
 	}

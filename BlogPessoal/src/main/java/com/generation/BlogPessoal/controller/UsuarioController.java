@@ -23,14 +23,14 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> authentication(@RequestBody Optional<UsuarioLogin> user){
-		return usuarioService.logar(user).map(resp -> ResponseEntity.ok(resp))
+	@PostMapping("/login")
+	public ResponseEntity<UsuarioLogin> login(@RequestBody Optional<UsuarioLogin> user){
+		return usuarioService.login(user).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
+	public ResponseEntity<Usuario> cadastrar(@RequestBody Usuario usuario){
 		Optional<Usuario> user = usuarioService.CadastrarUsuario(usuario);
 		try {
 			return ResponseEntity.ok(user.get());

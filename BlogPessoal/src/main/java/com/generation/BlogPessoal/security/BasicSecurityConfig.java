@@ -17,8 +17,11 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.inMemoryAuthentication()
+		.withUser("admin").password(passwordEncoder().encode("admin")).authorities("ROLE_ADMIN");
 		auth.userDetailsService(userDetailsService);
 	}
 	
@@ -30,7 +33,7 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
-		.antMatchers("/usuario/logar").permitAll()
+		.antMatchers("/usuario/login").permitAll()
 		.antMatchers("/usuario").permitAll()
 		.anyRequest().authenticated()
 		.and().httpBasic()

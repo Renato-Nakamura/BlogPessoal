@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\renat\OneDrive\Área de Trabalho\BlogPessoal\.metadata\.plugins\org.eclipse.jdt.core
+2580704094.index
+721446083.index

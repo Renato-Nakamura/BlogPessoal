@@ -1,2 +1,2 @@
 # BlogPessoal
-API Rest utilizando Spring
+API Rest utilizando Springa
